@@ -4,21 +4,18 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (event) {
         event.preventDefault(); 
 
-        let notaMate = document.getElementById("Matematica");
+        let notaMate = parseFloat(document.getElementById("Matematica").value);
         let errorMate = document.getElementById("errorMatematica");
 
-        let notaLengua = document.getElementById("Lengua").value;
+        let notaLengua = parseFloat(document.getElementById("Lengua").value);
         let errorLen = document.getElementById("errorLengua");
 
-        let notaEFSI = parseInt(document.getElementById("EFSI").value);
+        let notaEFSI = parseFloat(document.getElementById("EFSI").value);
         let errorEF = document.getElementById("errorEFSI");
 
         let promedios;
-        let e = document.getElementById("promedio");
+        let respuestaPromedio = document.getElementById("promedio");
         let mejorNota;
-
-        let valido = true;
-
 
         // Validar nota Matematica
 
@@ -26,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (notaMate<1 || notaMate>10) 
             {
                 errorMate.innerHTML = "La nota debe ser entre 1 y 10";
-                valido = false;
                 notaMate.style.color= "red";
             } else {
                 errorNombre.innerHTML = "";
@@ -39,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (notaLengua<1 || notaLengua>10) 
             {
                 errorLen.innerHTML = "La nota debe ser entre 1 y 10";
-                valido = false;
                 notaLengua.style.color= "red";
             } else {
                 errorNombre.innerHTML = "";
@@ -52,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (notaEFSI<1 || notaEFSI>10) 
             {
                 errorEF.innerHTML = "La nota debe ser entre 1 y 10";
-                valido = false;
                 notaEFSI.style.color= "red";
             } else {
                 errorNombre.innerHTML = "";
@@ -60,14 +54,40 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        if (!valido) 
-        {
-            return;
+        function calcularPromedio() {    
+            promedios = (notaMate + notaLengua + notaEFSI) / 3;
+            respuestaPromedio = document.getElementById("resultado");
+            respuestaPromedio.innerHTML = "Promedio: " + promedios.toFixed(2);
+            if(promedios>=6)
+            {
+                respuestaPromedio.style.color = "green";
+            }
+            else
+            {
+                respuestaPromedio.style.color= "red";
+            }
         }
 
-        promedios= (notaMate + notaLengua + notaEFSI)/3;
-        e.innerHTML= promedios;
-        alert("Registro exitoso!");
+        function mostrarMayorNota() {
+            let mayorNota;
+            let materias;
+           if (notaMate>notaLengua && notaMate>notaEFSI)
+           {
+                mayorNota="Matematica";
+           }
+           else if(notaLengua>notaMate && notaLengua>notaEFSI)
+           {
+                mayorNota="Lengua";
+           }
+           else if(notaEFSI>notaMate && notaEFSI>notaLengua)
+           {
+                mayorNota="EFSI";
+           }
+            
+            let mejor = document.getElementById("mejorMateria");
+            mejor.innerHTML = "Mayor nota en: " + materias.join(", ");
+            mejor.style.color = "blue";
+        }
         form.reset();
     });
 });
