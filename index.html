@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="campo">
+        <h1>Notas</h1>
+          <form id="NOTAS">
+              <label for="Matematica">Nota de Matematica</label>
+              <input type="text" id="Matematica" onkeyup="validarNotaMatematica()">
+              <span id="errorMatematica" class="error"></span>
+  
+              <label for="Lengua">Nota de Lengua</label>
+              <input type="text" id="Lengua" onkeyup="validarNotaLengua()">
+              <span id="errorLengua" class="error"></span>
+  
+              <label for="EFSI">Nota de EFSI</label>
+              <input type="text" id="EFSI" onkeyup="validarNotaEFSI()">
+              <span id="errorEFSI" class="error"></span>
+
+              <div>
+                <h2>Resultados:</h2>
+                <h3 id="promedio">Promedio de notas: </h3>
+                <h3 id="mejorMateria">Materia con mejor nota: </h3>
+              </div>
+  
+              <button type="submit" class="btn-101">
+                  Registrar
+                  <svg>
+                    <defs>
+                      <filter id="glow">
+                        <fegaussianblur result="coloredBlur" stddeviation="5"></fegaussianblur>
+                        <femerge>
+                          <femergenode in="coloredBlur"></femergenode>
+                          <femergenode in="coloredBlur"></femergenode>
+                          <femergenode in="coloredBlur"></femergenode>
+                          <femergenode in="SourceGraphic"></femergenode>
+                        </femerge>
+                      </filter>
+                    </defs>
+                    <rect />
+                  </svg>
+                </button>        
+              </form>
+      </div>
+      <script src="script.js"></script>
+</body>
+</html>
